@@ -42,6 +42,9 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\..\..\Xthk.TeacherResearch\Resources\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -62,6 +65,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UICore\AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="UICore\AttachedProperties\IsBusyProperty.cs" />
+    <Compile Include="UICore\AttachedProperties\IsMaximizedProperty.cs" />
+    <Compile Include="UICore\AttachedProperties\PasswordProperties.cs" />
+    <Compile Include="UICore\CommonHelper.cs" />
+    <Compile Include="UICore\Controls\CommandControl.cs" />
+    <Compile Include="UICore\ValueConverters\BooleanToObjectConverter.cs" />
+    <Compile Include="UICore\WindowResizer.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Views\SearchWindow.xaml.cs">
       <DependentUpon>SearchWindow.xaml</DependentUpon>
@@ -73,6 +84,18 @@
     <Page Include="ResourcesDictonaries\MainWindowDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UICore\Styles\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UICore\Styles\CheckBoxs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UICore\ValueConverters\ValueConverter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -130,7 +153,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UICore\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

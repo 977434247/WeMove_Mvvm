@@ -8,6 +8,7 @@
             <local:ServiceLocator x:Key="Locator"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/ResourcesDictonaries/DefaultStyles.xaml"/>
+                <ResourceDictionary Source="/UiCore/ValueConverters/ValueConverter.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
