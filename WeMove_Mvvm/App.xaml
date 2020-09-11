@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:WeMove_Mvvm"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-        <local:ServiceLocator x:Key="Locator"/>
+        <ResourceDictionary>
+            <local:ServiceLocator x:Key="Locator"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ResourcesDictonaries/DefaultStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

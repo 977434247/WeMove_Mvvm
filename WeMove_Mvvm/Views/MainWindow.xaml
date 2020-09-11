@@ -4,294 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeMove_Mvvm.Views"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d" WindowStyle="None" AllowsTransparency="True"
         Title="WeMove" Height="462" Width="432">
     <Window.DataContext>
         <Binding Path="MainViewModel" Source="{StaticResource Locator}"/>
     </Window.DataContext>
     <Window.Resources>
-        <SolidColorBrush x:Key="LightBackground" Color="#FFFFFFFF"/>
-        <SolidColorBrush x:Key="SecondLightBackground" Color="#FFF8F8F8"/>
-        <SolidColorBrush x:Key="ThirdLightBackground" Color="#FFeeeeee"/>
-        <SolidColorBrush x:Key="DarkForeground" Color="#FF000000"/>
-        <SolidColorBrush x:Key="LightForeground" Color="#FFFFFFFF"/>
-
-        <Color x:Key="SpeciBlueColor" >#FF053f4b</Color>
-        <SolidColorBrush x:Key="SpeciColorBlueBrush" Color="{StaticResource SpeciBlueColor}"/>
-        <Color x:Key="SpeciPurpleColor" >#FF290736</Color>
-        <SolidColorBrush x:Key="SpeciColorPurpleBrush" Color="{StaticResource SpeciPurpleColor}"/>
-
-        <Style TargetType="{x:Type Button}" x:Key="MinimButton">
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-            <Setter Property="Foreground" Value="#FF000000" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="ToolTip" Value="最小化"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid x:Name="grid"
-                          Background="{TemplateBinding Background}"
-                          MinHeight="36"
-                          MinWidth="36">
-                            <Path x:Name="icon"
-                              Width="15"
-                              Height="15"
-                              Fill="{TemplateBinding Foreground}"
-                              Stretch="Uniform"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                                  RenderTransformOrigin="0.5 0.5"
-                              Opacity="0.8">
-                                <Path.Data>
-                                    <GeometryGroup FillRule="Nonzero">
-                                        <RectangleGeometry Rect="0 0 15 1"/>
-                                    </GeometryGroup>
-                                </Path.Data>
-                                <Path.LayoutTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform x:Name="IconScale"/>
-                                    </TransformGroup>
-                                </Path.LayoutTransform>
-                                <Path.RenderTransform>
-                                    <TranslateTransform x:Name="IconTranslate" X="0" Y="1"/>
-                                </Path.RenderTransform>
-                            </Path>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="#FF000000" />
-                                <Setter Property="Opacity" TargetName="icon" Value="1"/>
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleX"
-                                                         To="1.2"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleY"
-                                                         To="1.2"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconTranslate"
-                                                         Storyboard.TargetProperty="Y" 
-                                                         To="6"
-                                                         Duration="0:0:0.15" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                                <Trigger.ExitActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleX"
-                                                         To="1"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleY"
-                                                         To="1"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconTranslate"
-                                                         Storyboard.TargetProperty="Y"
-                                                         To="1"
-                                                         Duration="0:0:0.15" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.ExitActions>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Foreground" Value="{StaticResource SpeciColorBlueBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="#99000000" />
-                                <Setter TargetName="icon" Property="Opacity" Value="0.3" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" x:Key="CloseButton">
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-            <!--需要注意！！WindowChrome.IsHitTestVisibleInChrome 如果设置为false  则点不动 (不设置默认为false)-->
-            <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
-            <Setter Property="Foreground" Value="#FF000000" />
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="ToolTip" Value="关闭"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Grid x:Name="grid"
-                          Background="{TemplateBinding Background}"
-                          MinHeight="36"
-                          MinWidth="36">
-                            <!--RenderTransformOrigin 设置旋转中心点  0.5 0.5为图形中心-->
-                            <Path x:Name="icon"
-                              Width="15"
-                              Height="15"
-                              Fill="{TemplateBinding Foreground}"
-                              Stretch="Uniform"
-                              HorizontalAlignment="Center"
-                              VerticalAlignment="Center"
-                                  RenderTransformOrigin="0.5 0.5"
-                              Opacity="0.8">
-                                <Path.Data>
-                                    <GeometryGroup FillRule="Nonzero">
-                                        <RectangleGeometry Rect="0 7 15 1"/>
-                                        <RectangleGeometry Rect="7 0 1 15"/>
-                                    </GeometryGroup>
-                                </Path.Data>
-                                <Path.LayoutTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform x:Name="IconScale"/>
-                                        <RotateTransform x:Name="IconRotate" Angle="45"/>
-                                    </TransformGroup>
-                                </Path.LayoutTransform>
-                            </Path>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="#FF000000" />
-                                <Setter Property="Opacity" TargetName="icon" Value="1"/>
-                                <Trigger.EnterActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleX"
-                                                         To="1.2"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleY"
-                                                         To="1.2"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconRotate"
-                                                         Storyboard.TargetProperty="Angle"
-                                                         To="-45"
-                                                         Duration="0:0:0.15" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.EnterActions>
-                                <Trigger.ExitActions>
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleX"
-                                                         To="1"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconScale"
-                                                         Storyboard.TargetProperty="ScaleY"
-                                                         To="1"
-                                                         Duration="0:0:0.15" />
-                                            <DoubleAnimation Storyboard.TargetName="IconRotate"
-                                                         Storyboard.TargetProperty="Angle"
-                                                         To="45"
-                                                         Duration="0:0:0.15" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </Trigger.ExitActions>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Foreground" Value="{StaticResource SpeciColorBlueBrush}" />
-                            </Trigger>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Foreground" Value="#99000000" />
-                                <Setter TargetName="icon" Property="Opacity" Value="0.3" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType="{x:Type local:MainWindow}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Window}">
-                        <Border Background="White" BorderBrush="{StaticResource SecondLightBackground}" BorderThickness="1">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="65"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <!--#region 功能区 -->
-                                <Border Background="{StaticResource SecondLightBackground}" BorderBrush="{StaticResource ThirdLightBackground}" BorderThickness="0 0 0 1">
-                                    <DockPanel LastChildFill="False">
-                                        <TextBlock Margin="32 0 0 0" VerticalAlignment="Center" DockPanel.Dock="Left" Text="We Move" FontSize="25" FontFamily="Microsoft YaHei UI"/>
-                                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal" DockPanel.Dock="Right">
-                                            <Button Command="{Binding MinimCommand}" Style="{StaticResource MinimButton}"/>
-                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource CloseButton}"/>
-                                        </StackPanel>
-                                    </DockPanel>
-                                </Border>
-                                <!--#endregion-->
-
-
-                                <!--#region 客户区 -->
-                                <Border Grid.Row="1">
-                                    <ContentPresenter Content="{TemplateBinding Content}"/>
-                                </Border>
-                                <!--#endregion-->
-                            </Grid>
-
-
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="../ResourcesDictonaries/MainWindowDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+        
+        
     </Window.Resources>
     <WindowChrome.WindowChrome>
         <!--ResizeBorderThickness 如果设置为0则 不允许窗体拖动大小-->
         <WindowChrome CaptionHeight="66" CornerRadius="0" GlassFrameThickness="0" ResizeBorderThickness="0"/>
     </WindowChrome.WindowChrome>
 
+    <StackPanel Width="396" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 60 0 0">
+        <TextBox Text="{Binding Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Tag="邮箱号" Style="{StaticResource EmailTextBoxStyle}"/>
+        <CheckBox IsEnabled="{Binding CanSign}" IsChecked="{x:Null}" Content=" 记住我" Style="{StaticResource RememberCheckBox}"/>
+        <Button IsEnabled="{Binding CanSign}" Height="46" Content="测  试" Style="{DynamicResource LoginButtonStyle}"/>
 
-    <Grid Width="396" Height="390" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBox Text="{Binding Email}" Tag="邮箱号"  Height="30" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Stretch" Padding="5 0 0 0">
-            <TextBox.Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type TextBoxBase}">
-                                <Grid>
-                                    <Border x:Name="border" 
-                                                    BorderBrush="{TemplateBinding BorderBrush}" 
-                                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                                    Background="{TemplateBinding Background}"
-                                                    SnapsToDevicePixels="True">
-                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" VerticalAlignment="Center"  HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-                                    </Border>
-                                    <TextBlock Text="{TemplateBinding Tag}" FontSize="{TemplateBinding FontSize}"
-                                               Margin="3 0 0 0" 
-                                               Padding="{TemplateBinding Padding}"
-                                               HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                               VerticalAlignment="Center" Opacity="0.5"
-                                               Foreground="Gray">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Collapsed"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Text,RelativeSource={RelativeSource TemplatedParent}}" Value="">
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-
-                                    </TextBlock>
-                                </Grid>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </TextBox.Style>
-        </TextBox>
-    </Grid>
+    </StackPanel>
 </Window>

@@ -13,21 +13,46 @@ namespace WeMove_Mvvm.ViewModels
 {
     public class MainViewModel : NotifyPropertyChanged
     {
-        public MainViewModel()
-        {
-            email = "977434247@qq.com";
-        }
 
         private string email;
 
         public string Email
         {
             get { return email; }
-            set { email = value; OnPropertyChanged(); }
+            set
+            {
+                email = value; OnPropertyChanged();
+                CanSign = !string.IsNullOrWhiteSpace(email);
+            }
         }
+
+        private bool canSign;
+
+        /// <summary>
+        /// ture: Can Sign false:No
+        /// </summary>
+        public bool CanSign
+        {
+            get { return canSign; }
+            set
+            {
+                canSign = value; OnPropertyChanged();
+            }
+        }
+
+
+        private bool isSigning;
+
+        public bool IsSigning
+        {
+            get { return isSigning; }
+            set { isSigning = value; OnPropertyChanged(); }
+        }
+
 
         public MainViewModel()
         {
+            Email = "977434247@qq.com";
             MinimCommand = new RelyCommand(() =>
             {
                 App.Current.MainWindow.WindowState = WindowState.Minimized;
@@ -37,10 +62,17 @@ namespace WeMove_Mvvm.ViewModels
             {
                 App.Current.MainWindow.Close();
             });
+
+            SignCommand = new RelyCommand(() =>
+            {
+
+            });
         }
 
         public ICommand MinimCommand { get; private set; }
         public ICommand CloseCommand { get; private set; }
+
+        public ICommand SignCommand { get; private set; }
 
     }
 }
