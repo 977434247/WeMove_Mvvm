@@ -26,9 +26,12 @@
         <WindowChrome CaptionHeight="66" CornerRadius="0" GlassFrameThickness="0" ResizeBorderThickness="0"/>
     </WindowChrome.WindowChrome>
 
-    <StackPanel Width="396" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 60 0 0">
-        <TextBox Text="{Binding Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Tag="邮箱号" Style="{StaticResource EmailTextBoxStyle}"/>
-        <CheckBox IsEnabled="{Binding CanSign}" IsChecked="{x:Null}" Content=" 记住我" Style="{StaticResource RememberCheckBox}"/>
-        <Button IsEnabled="{Binding CanSign}"  uicoreattchached:IsBusyProperty.Value="{Binding IsSigning}"  Height="46" Content="测  试" Style="{DynamicResource LoginButtonStyle}" Command="{Binding SignCommand}"/>
-    </StackPanel>
+
+    <Grid>
+        <StackPanel Width="396" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="0 60 0 0">
+            <TextBox Text="{Binding Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Tag="邮箱号" Style="{StaticResource EmailTextBoxStyle}"/>
+            <CheckBox IsEnabled="{Binding CanSign}" IsChecked="{x:Null}" Content=" 记住我" Style="{StaticResource RememberCheckBox}"/>
+            <Button IsEnabled="{Binding CanSign}"  uicoreattchached:IsBusyProperty.Value="{Binding IsSigning}"  Height="46" Content="登录" Style="{DynamicResource LoginButtonStyle}" Command="{Binding SignCommand}"/>
+        </StackPanel>
+    </Grid>
 </Window>

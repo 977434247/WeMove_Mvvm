@@ -64,17 +64,33 @@ namespace WeMove_Mvvm.ViewModels
                 App.Current.MainWindow.Close();
             });
 
-            SignCommand = new RelyCommand(() =>
-            {
-                IsSigning = true;
-                CanSign = false;
-                Task.Run(() =>
-                {
+            //SignCommand = new RelyCommand(() =>
+            //{
+            //    if (IsSigning)
+            //    {
+            //        return;
+            //    }
+            //    IsSigning = true;
+            //    Task.Run(() =>
+            //    {
 
-                    Thread.Sleep(2000);
-                    IsSigning = false;
-                    CanSign = true;
-                });
+            //        //验证
+            //        Thread.Sleep(2000);
+
+            //        //验证完成后  判断如果失败则继续停留当前窗口
+            //        IsSigning = false;
+            //    });
+            //});
+
+            SignCommand = new RelyCommand(async () =>
+            {
+                await RunCommandAsync(() => IsSigning, async () =>
+                 {
+                     await Task.Run(() =>
+                     {
+                         Thread.Sleep(2000);
+                     });
+                 });
             });
         }
 
