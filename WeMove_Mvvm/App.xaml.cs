@@ -21,6 +21,10 @@ namespace WeMove_Mvvm
             base.OnStartup(e);
 
             ServiceProvider.LoadModule(new MainModule());
+
+            Views.Sign.SignWindow window = new Views.Sign.SignWindow();
+            App.Current.MainWindow = window;
+            App.Current.MainWindow.Show();
         }
     }
 }

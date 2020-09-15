@@ -12,7 +12,6 @@ namespace WeMove_Mvvm.ViewModels
     public class SearchViewModel : NotifyPropertyChanged
     {
         ServiceLocator ServiceLocator = new ServiceLocator();
-
         public SearchViewModel()
         {
             SearchCommand = new RelyCommand(() =>
