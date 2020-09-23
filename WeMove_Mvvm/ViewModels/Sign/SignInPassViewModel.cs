@@ -10,18 +10,18 @@ using WeMove_Utils;
 namespace WeMove_Mvvm.ViewModels.Sign
 {
 
-    public class SignInMailViewModel : NotifyPropertyChanged
+    public class SignInPassViewModel : NotifyPropertyChanged
     {
 
-        private string email;
+        private string password;
 
-        public string Email
+        public string Password
         {
-            get { return email; }
+            get { return password; }
             set
             {
-                email = value; OnPropertyChanged();
-                CanSign = !string.IsNullOrWhiteSpace(email);
+                password = value; OnPropertyChanged();
+                CanSign = !string.IsNullOrWhiteSpace(password);
             }
         }
 
@@ -49,9 +49,8 @@ namespace WeMove_Mvvm.ViewModels.Sign
         }
 
 
-        public SignInMailViewModel()
+        public SignInPassViewModel()
         {
-            Email = "977434247@qq.com";
 
             //SignCommand = new RelyCommand(() =>
             //{
@@ -77,9 +76,13 @@ namespace WeMove_Mvvm.ViewModels.Sign
                 {
                     await Task.Run(() =>
                     {
-                        Thread.Sleep(1000);
-                        App.Current.Dispatcher.Invoke(() => { ServiceProvider.Get<SignViewModel>().CurrentView = new Views.Sign.SignInPassView(); });
+
+                        App.Current.Dispatcher.Invoke(() =>
+                        {
+                            ServiceProvider.Get<SignViewModel>().CurrentView = new Views.Sign.SignInMailView();
+                        });
                     });
+
                 });
             });
         }

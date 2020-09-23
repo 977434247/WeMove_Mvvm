@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace WeMove_Mvvm.UICore.Util
+namespace WeMove_Mvvm.Views.Sign
 {
     public class AnimatableBaseView : UserControl
     {
@@ -19,6 +19,7 @@ namespace WeMove_Mvvm.UICore.Util
         public AnimatableBaseView()
         {
             Loaded += AnimatableBaseView_Loaded;
+
         }
 
         private async void AnimatableBaseView_Loaded(object sender, System.Windows.RoutedEventArgs e)

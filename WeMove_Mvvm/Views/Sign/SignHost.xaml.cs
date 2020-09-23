@@ -24,5 +24,21 @@ namespace WeMove_Mvvm.Views.Sign
         {
             InitializeComponent();
         }
+
+        public FrameworkElement CurrentViewContent
+        {
+            get { return (FrameworkElement)GetValue(CurrentViewContentProperty); }
+            set { SetValue(CurrentViewContentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CurrentViewContent.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CurrentViewContentProperty =
+            DependencyProperty.Register("CurrentViewContent", typeof(FrameworkElement), typeof(SignHost), new UIPropertyMetadata(default(FrameworkElement), null, CurrentViewPropertyChanged));
+
+        private static object CurrentViewPropertyChanged(DependencyObject d, object baseValue)
+        {
+            (d as SignHost).NewFrame.Content = baseValue;
+            return baseValue;
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace WeMove_Mvvm.Models
             binder.BindSingleton<MainViewModel>();
             binder.BindSingleton<SignViewModel>();
             binder.BindSingleton<SignInMailViewModel>();
+            binder.BindSingleton<SignInPassViewModel>();
         }
     }
 }

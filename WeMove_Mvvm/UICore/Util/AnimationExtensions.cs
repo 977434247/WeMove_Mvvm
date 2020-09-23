@@ -7,13 +7,13 @@ using System.Windows;
 using System.Windows.Media.Animation;
 using WeMove_Mvvm.Views.Sign;
 
-namespace WeMove_Mvvm.UICore.Util
+namespace WeMove_Mvvm.Views.Sign
 {
     public static class AnimationExtensions
     {
         public static async Task SlideAndFadeInAsync(this FrameworkElement element, AnimationDirection direction, float seconds = 0.3f, bool keepMargin = true, int size = 0, bool firstLoad = false)
         {
-            // Create the storyboard
+            // 新建一个故事板
             var sb = new Storyboard();
 
             switch (direction)
@@ -36,24 +36,24 @@ namespace WeMove_Mvvm.UICore.Util
 
 
 
-            // Add fade in animation
+            // 添加动画淡入
             sb.AddFadeIn(seconds);
 
-            // Start animating
+            // 开始动画
             sb.Begin(element);
 
-            // Make page visible only if we are animating or its the first load
+            // 使页面可见，只有当我们是动画或它的第一次加载
             if (seconds != 0 || firstLoad)
                 element.Visibility = Visibility.Visible;
 
-            // Wait for it to finish
+            // 等待它结束
             await Task.Delay((int)(seconds * 1000));
         }
 
 
         public static async Task SlideAndFadeOutAsync(this FrameworkElement element, AnimationDirection direction, float seconds = 0.3f, bool keepMargin = true, int size = 0, bool firstLoad = false)
         {
-            // Create the storyboard
+            // 新建一个故事板
             var sb = new Storyboard();
 
             switch (direction)
@@ -75,17 +75,17 @@ namespace WeMove_Mvvm.UICore.Util
             }
 
 
-            // Add fade in animation
+            // 添加动画淡入
             sb.AddFadeOut(seconds);
 
-            // Start animating
+            // 开始动画
             sb.Begin(element);
 
-            // Make page visible only if we are animating or its the first load
+            // 使页面可见，只有当我们是动画或它的第一次加载
             if (seconds != 0 || firstLoad)
                 element.Visibility = Visibility.Visible;
 
-            // Wait for it to finish
+            // 等待它结束
             await Task.Delay((int)(seconds * 1000));
             element.Visibility = Visibility.Hidden;
         }
@@ -103,7 +103,7 @@ namespace WeMove_Mvvm.UICore.Util
     {
 
         /// <summary>
-        /// 【Out】Slide to Right
+        /// 【Out】滑到右
         /// </summary>
         /// <param name="storyboard"></param>
         /// <param name="seconds"></param>
@@ -112,7 +112,7 @@ namespace WeMove_Mvvm.UICore.Util
         /// <param name="keepMargin"></param>
         public static void AddSlideToLeft(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
-            // Create the margin animate from right 
+            // 从右侧创建页边距动画
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
@@ -121,16 +121,16 @@ namespace WeMove_Mvvm.UICore.Util
                 DecelerationRatio = decelerationRatio
             };
 
-            // Set the target property name
+            // 设置目标属性名
             Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
 
-            // Add this to the storyboard
+            // 将其添加到故事板中
             storyboard.Children.Add(animation);
         }
 
         public static void AddSlideToRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
-            // Create the margin animate from right 
+            // 从右侧创建页边距动画
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
@@ -139,10 +139,10 @@ namespace WeMove_Mvvm.UICore.Util
                 DecelerationRatio = decelerationRatio
             };
 
-            // Set the target property name
+            // 设置目标属性名
             Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
 
-            // Add this to the storyboard
+            // 将其添加到故事板中
             storyboard.Children.Add(animation);
         }
 
@@ -155,7 +155,7 @@ namespace WeMove_Mvvm.UICore.Util
     {
 
         /// <summary>
-        /// 【In】Slide Form Left
+        /// 【In】从左边创建动画边框
         /// </summary>
         /// <param name="storyboard"></param>
         /// <param name="seconds"></param>
@@ -164,7 +164,7 @@ namespace WeMove_Mvvm.UICore.Util
         /// <param name="keepMargin"></param>
         public static void AddSlideFromLeft(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
-            // Create the margin animate from right 
+            // 从右侧创建页边距动画
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
@@ -173,16 +173,16 @@ namespace WeMove_Mvvm.UICore.Util
                 DecelerationRatio = decelerationRatio
             };
 
-            // Set the target property name
+            // 设置目标属性名
             Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
 
-            // Add this to the storyboard
+            // 将其添加到故事板中
             storyboard.Children.Add(animation);
         }
 
         public static void AddSlideFromRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f, bool keepMargin = true)
         {
-            // Create the margin animate from right 
+            // 从右侧创建页边距动画
             var animation = new ThicknessAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
@@ -191,65 +191,65 @@ namespace WeMove_Mvvm.UICore.Util
                 DecelerationRatio = decelerationRatio
             };
 
-            // Set the target property name
+            // 设置目标属性名
             Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
 
-            // Add this to the storyboard
+            // 将其添加到故事板中
             storyboard.Children.Add(animation);
         }
 
     }
 
     /// <summary>
-    /// Fade In Out
+    /// 淡入 淡出
     /// </summary>
     public static class FadeInOut
     {
 
         /// <summary>
-        /// 【In】Fade In
+        /// 【In】淡入
         /// </summary>
         /// <param name="storyboard"></param>
         /// <param name="seconds"></param>
         /// <param name="from"></param>
         public static void AddFadeIn(this Storyboard storyboard, float seconds, bool from = false)
         {
-            // Create the margin animate from right 
+            // 从右侧创建页边距动画
             var animation = new DoubleAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
                 To = 1,
             };
 
-            // Animate from if requested
+            // 如果需要from 则创建从0开始
             if (from)
                 animation.From = 0;
 
-            // Set the target property name
+            // 设置目标属性名
             Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));
 
-            // Add this to the storyboard
+            // 将其添加到故事板中
             storyboard.Children.Add(animation);
         }
 
         /// <summary>
-        /// 【Out】Fade Out
+        /// 【Out】淡出
         /// </summary>
         /// <param name="storyboard"></param>
         /// <param name="seconds"></param>
         public static void AddFadeOut(this Storyboard storyboard, float seconds)
         {
-            // Create the margin animate from right 
+            // 从右侧创建页边距动画
             var animation = new DoubleAnimation
             {
                 Duration = new Duration(TimeSpan.FromSeconds(seconds)),
                 To = 0,
             };
 
-            // Set the target property name
+            // 设置目标属性名
             Storyboard.SetTargetProperty(animation, new PropertyPath("Opacity"));
 
-            // Add this to the storyboard
+            // 将其添加到故事板中
             storyboard.Children.Add(animation);
         }
     }

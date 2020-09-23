@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeMove_Mvvm.Views.Sign"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="WeMove" Height="462" Width="432"
        >
     <Window.DataContext>
@@ -61,6 +61,6 @@
         <WindowChrome CaptionHeight="66" CornerRadius="0" GlassFrameThickness="0" ResizeBorderThickness="0"/>
     </WindowChrome.WindowChrome>
     <Grid>
-        <local:SignHost/>
+        <local:SignHost CurrentViewContent="{Binding CurrentView}"/>
     </Grid>
 </Window>

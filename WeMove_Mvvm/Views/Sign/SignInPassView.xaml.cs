@@ -18,9 +18,9 @@ namespace WeMove_Mvvm.Views.Sign
     /// <summary>
     /// SignInMailView.xaml 的交互逻辑
     /// </summary>
-    public partial class SignInMailView : AnimatableBaseView
+    public partial class SignInPassView : AnimatableBaseView
     {
-        public SignInMailView()
+        public SignInPassView()
         {
             InitializeComponent();
         }

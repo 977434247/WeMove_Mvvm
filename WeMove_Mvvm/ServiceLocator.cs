@@ -19,5 +19,6 @@ namespace WeMove_Mvvm
 
         public SignViewModel SignViewModel => ServiceProvider.Get<SignViewModel>();
         public SignInMailViewModel SignInMailViewModel => ServiceProvider.Get<SignInMailViewModel>();
+        public SignInPassViewModel SignInPassViewModel => ServiceProvider.Get<SignInPassViewModel>();
     }
 }
